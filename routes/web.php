@@ -1,18 +1,24 @@
 <?php
 
+use App\Models\User;
+use App\Notifications\EmailNotification;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/sent/notification', function () {
+    $users = User::find(2);
+    // dd($users);
+    $users->notify(new EmailNotification);
+    return redirect()->back();
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
