@@ -8,8 +8,8 @@
 </head>
 <body>
     <div style="background:red;padding:2%;">
-        <h1>Your Order canceled</h1>
-        <p>Due to ..... cause</p>
+        <h1>{{ $name1 }}</h1>
+        <p>{{ $name2 }}</p>
     </div>
 </body>
 </html>

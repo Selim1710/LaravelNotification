@@ -14,7 +14,7 @@ Route::get('/sent/notification', function () {
     $users = User::all();
     // dd($users);
     foreach($users as $user){
-        Notification::send($user, new EmailNotification());
+        Notification::send($user, new EmailNotification('Order Cancel', 'Due to .... issue'));
     }
     return redirect()->back()->with('message','Notification Sent');
    

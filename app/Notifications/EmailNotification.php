@@ -11,47 +11,24 @@ class EmailNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+    public $name1="";
+    public $name2="";
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
+    public function __construct($name1,$name2)
+    {
+        $this->name1 = $name1;
+        $this->name2 = $name2;
+    }
     public function via($notifiable)
     {
         return ['mail'];
     }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
     public function toMail($notifiable)
     {
-        // return (new MailMessage)
-        //     ->line('Order Canceled')
-        //     ->action('Notification Action', url('/'));
-        return(new MailMessage)->view('notification');
+        $name1=$this->name1;
+        $name2 = $this->name2;
+        return(new MailMessage)->view('notification',compact('name1','name2'));
     }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function toArray($notifiable)
     {
         return [
