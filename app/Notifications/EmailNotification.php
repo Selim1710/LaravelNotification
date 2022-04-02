@@ -40,9 +40,10 @@ class EmailNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->line('Order Canceled')
-            ->action('Notification Action', url('/'));
+        // return (new MailMessage)
+        //     ->line('Order Canceled')
+        //     ->action('Notification Action', url('/'));
+        return(new MailMessage)->view('notification');
     }
 
     /**
